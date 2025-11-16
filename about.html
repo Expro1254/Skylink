@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="dark">
 
 <head>
   <meta charset="UTF-8" />
@@ -9,6 +9,7 @@
   <title>SkyLink | About</title>
 
   <!-- Tailwind CDN -->
+  <script>tailwind.config = { darkMode: 'class' }</script>
   <script src="https://cdn.tailwindcss.com"></script>
 
   <!-- Flowbite CDN -->
@@ -16,7 +17,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
 </head>
 
-<body class="bg-black text-white">
+<body class="bg-white text-black dark:bg-black dark:text-white">
 
   <!-- NAVBAR -->
   <!-- Paste the Navbar here -->
@@ -35,7 +36,10 @@
         <a href="contact.html" class="hover:text-yellow-400">Contact</a>
       </div>
 
-      <div class="hidden md:flex space-x-4">
+      <div class="hidden md:flex items-center space-x-4">
+        <!-- THEME TOGGLE BUTTON -->
+        <button id="themeToggle" class="text-yellow-400 text-xl px-3">🌙</button>
+
         <a href="signup.html"
            class="px-4 py-2 border border-yellow-500 text-yellow-400 rounded-lg hover:bg-yellow-500 hover:text-black transition">
           Sign Up
@@ -267,8 +271,12 @@
     </p>
   </div>
 </footer>
+</footer>
 
-
+<script type="module">
+  import { initTheme } from "./utils/themeUtils.js";
+  initTheme();
+</script>
 </body>
 
 </html>

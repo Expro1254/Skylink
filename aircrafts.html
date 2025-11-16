@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aircraft Manager | SkyLink</title>
+  <script>tailwind.config = { darkMode: 'class' }</script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script defer type="module" src="./src/pages/aircrafts/aircrafts.js"></script>
+</head>
+
+<body class="bg-white text-black dark:bg-black dark:text-white">
+
+  <!-- NAVBAR -->
+  <nav class="bg-black border-b border-yellow-600/40 sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between h-16 items-center">
+        <a href="index.html" class="flex items-center">
+          <span class="text-yellow-400 text-2xl font-extrabold tracking-wide">SkyLink</span>
+        </a>
+
+        <div class="hidden md:flex space-x-8 text-gray-300 font-medium">
+          <a href="index.html" class="hover:text-yellow-400">Home</a>
+          <a href="about.html" class="hover:text-yellow-400">About</a>
+          <a href="contact.html" class="hover:text-yellow-400">Contact</a>
+        </div>
+
+        <div class="hidden md:flex items-center space-x-4">
+          <!-- THEME TOGGLE BUTTON -->
+          <button id="themeToggle" class="text-yellow-400 text-xl px-3">🌙</button>
+
+          <a href="signup.html"
+             class="px-4 py-2 border border-yellow-500 text-yellow-400 rounded-lg hover:bg-yellow-500 hover:text-black transition">
+            Sign Up
+          </a>
+          <a href="signin.html"
+             class="px-4 py-2 bg-yellow-500 text-black font-semibold rounded-lg hover:bg-yellow-400 transition">
+            Sign In
+          </a>
+        </div>
+
+        <button onclick="toggleMenu()" aria-controls="mobileMenu" aria-expanded="false" class="md:hidden text-yellow-400">
+          <svg class="h-8 w-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M4 6h16M4 12h16M4 18h16"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <div id="mobileMenu" class="hidden md:hidden bg-black border-t border-yellow-600/40">
+      <a href="index.html" class="block px-4 py-3 text-gray-300 hover:text-yellow-400">Home</a>
+      <a href="about.html" class="block px-4 py-3 text-gray-300 hover:text-yellow-400">About</a>
+      <a href="contact.html" class="block px-4 py-3 text-gray-300 hover:text-yellow-400">Contact</a>
+      <a href="signup.html" class="block px-4 py-3 text-yellow-400 border-t border-yellow-600/40">Sign Up</a>
+      <a href="signin.html" class="block px-4 py-3 bg-yellow-500 text-black font-semibold">Sign In</a>
+    </div>
+  </nav>
+
+  <script>
+    function toggleMenu() {
+      const menu = document.getElementById('mobileMenu');
+      menu.classList.toggle('hidden');
+      const btn = document.querySelector('button[aria-controls="mobileMenu"]');
+      if (btn) btn.setAttribute('aria-expanded', String(!menu.classList.contains('hidden')));
+    }
+  </script>
+
+  <section class="max-w-7xl mx-auto px-6 py-10">
+    <h1 class="text-4xl font-bold text-yellow-400 mb-6">Manage Aircrafts</h1>
+
+    <!-- SEARCH / FILTER -->
+    <div class="flex gap-4 mb-6">
+      <input id="searchInput" type="text" placeholder="Search aircraft..."
+        class="px-4 py-2 w-64 rounded bg-gray-900 border border-yellow-600/40">
+
+      <select id="categoryFilter" class="px-4 py-2 bg-gray-900 border border-yellow-600/40 rounded">
+        <option value="">All Categories</option>
+        <option value="Private Jet">Private Jet</option>
+        <option value="Helicopter">Helicopter</option>
+        <option value="Commercial Jet">Commercial Jet</option>
+      </select>
+
+      <select id="sortBy" class="px-4 py-2 bg-gray-900 border border-yellow-600/40 rounded">
+        <option value="">Sort By</option>
+        <option value="priceLow">Price: Low to High</option>
+        <option value="priceHigh">Price: High to Low</option>
+      </select>
+    </div>
+
+    <!-- ADD NEW -->
+    <button id="addBtn" class="px-6 py-2 bg-yellow-500 text-black rounded">Add Aircraft</button>
+
+    <!-- GRID -->
+    <div id="aircraftGrid" class="grid md:grid-cols-3 gap-8 mt-8"></div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="bg-black border-t border-yellow-600/40 py-10 mt-16">
+    <div class="max-w-7xl mx-auto px-6 text-center">
+      <h2 class="text-yellow-400 text-3xl font-bold">SkyLink</h2>
+      <p class="text-gray-400 mt-2 text-lg">Buy, Rent & Connect with Aircraft Contractors Worldwide.</p>
+
+      <div class="flex justify-center space-x-6 mt-6">
+        <a href="index.html" class="text-gray-400 hover:text-yellow-400">Home</a>
+        <a href="about.html" class="text-gray-400 hover:text-yellow-400">About</a>
+        <a href="contact.html" class="text-gray-400 hover:text-yellow-400">Contact</a>
+        <a href="signup.html" class="text-gray-400 hover:text-yellow-400">Sign Up</a>
+        <a href="signin.html" class="text-gray-400 hover:text-yellow-400">Sign In</a>
+      </div>
+
+      <p class="text-gray-500 text-sm mt-6">© 2025 SkyLink. All Rights Reserved.</p>
+    </div>
+  </footer>
+
+  <script type="module">
+    import { initTheme } from "./utils/themeUtils.js";
+    initTheme();
+  </script>
+
+</body>
+
+</html>
